@@ -8,15 +8,17 @@ const RecordList = (props) => {
     const history = useHistory();
     const records = props.records;
     const title = props.title;
-    const userClick= () => {
-        const methodz = { 
+    const userClick= (props, id) => {
+        let url = props.url/id;
+        console.log(url);
+     /*    const methodz = { 
             method: 'DELETE'
         }   
         fetch(props.url, methodz)
          .then(() => {
             console.log('entry deleted');
             //history.push('/'); 
-        });
+        }); */
     }
     //const cars = props.cars;
     console.log("made it to Records");
@@ -47,7 +49,7 @@ const RecordList = (props) => {
                         <Button variant='outline-info'>
                             <Link to={`/record/${record.id}`}>Edit</Link>
                         </Button> 
-                        <Button  variant='outline-danger' onClick={() => props.handleDelete(record.id)}>
+                        <Button  variant='outline-danger' onClick={() => props.handleDelete(props.url, record.id)}>
                             Delete
                         </Button> 
                     </ButtonGroup>

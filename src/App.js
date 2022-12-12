@@ -41,9 +41,13 @@ const ENDPOINT = 'https://6375c99d7e93bcb006b9b0ae.mockapi.io/api/v1/studentCars
                   <Route exact path="/record/:id" >
                     <ViewRecord url={ENDPOINT}/>
                   </Route>
-                  <Route exact path="/" >
+                  <Route exact path="/delete" >
                     <Home url={ENDPOINT} />
                   </Route>
+                  <Route path="/" >
+                    <Home url={ENDPOINT} />
+                  </Route>
+                  
                 </Switch>
               </div>
             </header>

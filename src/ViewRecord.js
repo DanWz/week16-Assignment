@@ -16,6 +16,7 @@ const ViewRecord = (props) => {
     const { data: record, isLoading, isError } = useFetch(`${ props.url }/${ id }`);
     //const { pass } = record;
     const [myCarId, setMyCarId] = useState('');
+    
     const handleDelete = (carId, id) => {
         //const updateCars = record.cars.filter(car => car.id !== id);
         /* setRecords(newRecords); */
