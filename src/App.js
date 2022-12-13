@@ -16,6 +16,7 @@ import Home from './Home';
 import Create from './Create';
 import FAQ from './FAQ';
 import ViewRecord from './ViewRecord';
+import AddVehicle from './AddVehicle';
 
 
 function App() {
@@ -41,13 +42,12 @@ const ENDPOINT = 'https://6375c99d7e93bcb006b9b0ae.mockapi.io/api/v1/studentCars
                   <Route exact path="/record/:id" >
                     <ViewRecord url={ENDPOINT}/>
                   </Route>
-                  <Route exact path="/delete" >
+                  <Route exact path="/update/:id" >
+                    <AddVehicle url={ENDPOINT} />
+                  </Route>
+                  <Route exact path="/" >
                     <Home url={ENDPOINT} />
                   </Route>
-                  <Route path="/" >
-                    <Home url={ENDPOINT} />
-                  </Route>
-                  
                 </Switch>
               </div>
             </header>

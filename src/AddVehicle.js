@@ -1,54 +1,56 @@
 import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
+//import ViewRecord from "./ViewRecord";
+import useFetch from "./issueFetch";
 
-const Create = (url) => {
-    console.log('create entry comp loaded')
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+const AddVehicle = (props) => {
+    const history = useHistory();
+    const { id } = useParams();
+    console.log(props.url);
+    const { data: record, isLoading, isError } = useFetch(`${ props.url }/${ id }`);
+    //console.log(record);
+    console.log(`adding a vehicle to list for ID ${id}`);
+    //let currentRecord = { props.record };
+    //console.log(`This is CurrentRecord ${currentRecord}`);
     const [carMake, setCarMake] = useState('');
     const [carModel, setCarModel] = useState('');
     const [carColor, setCarColor] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const fullName = `${firstName} ${lastName}`;
-    const carMM = `${carMake} ${carModel}`
+    //const [isLoading, setIsLoading] = useState(false);
+    //const fullName = `${firstName} ${lastName}`;
+    const carMM = `${carMake} ${carModel}`;
     const cars = {"make": carMM, "color": carColor};
-    const history = useHistory();
+    //const history = useHistory();
 
 
 const handleSubmit = (e) => {
     console.log("s");
     e.preventDefault();
-    const NewRecord = { name: fullName, cars: [cars] };
+    //const NewRecord = { name: fullName, cars: [cars] };
+    console.log(record);
+    const NewRecord = record.cars.push(cars);
     console.log(NewRecord);
-    console.log(url.url);
+    console.log(props.url);
     const methodz = { 
-        method: 'POST',
+        method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(NewRecord)
     }
-    setIsLoading(true);
+    //setIsLoading(true);
 
-    fetch(url.url, methodz)
+    fetch(`${ props.url }/${ id }`, methodz)
      .then(() => {
         console.log('new blog added');
-        history.push('/'); 
+        history.goBack(); 
     });
 }
 
     return (  
         <div>
-        <h2>Create New Record</h2>
+        <h2>Add Record</h2>
         {/* <Form onSubmit={HandleSubmit}> */}
         <Form onSubmit={handleSubmit}>
-            <FormGroup>
-                <FormLabel>First Name</FormLabel>
-                <FormControl type="text" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)}></FormControl>
-            </FormGroup>
-            <FormGroup>
-                <FormLabel>Last Name</FormLabel>
-                <FormControl type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)}></FormControl>
-            </FormGroup>
             <FormGroup>
                 <FormLabel>Vehicle Make</FormLabel>
                 <FormControl type="text" placeholder="Make" value={carMake} onChange={(e) => setCarMake(e.target.value)}></FormControl>
@@ -68,4 +70,4 @@ const handleSubmit = (e) => {
     );
 }
  
-export default Create;
+export default AddVehicle;

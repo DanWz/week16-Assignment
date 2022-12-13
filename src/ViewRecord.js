@@ -70,7 +70,7 @@ const ViewRecord = (props) => {
                 <div>
             <h4>Name: {record.name}</h4>
             <h4>Instantiated: {record.createdAt}</h4>
-            <h5>registered Vehicles</h5>
+            <h5>Registered Vehicles</h5>
             <div>
                 <Table striped bordered hover>
                     <thead>
@@ -90,8 +90,8 @@ const ViewRecord = (props) => {
                             <td>
                                 <ButtonGroup>
                                     {/* <Button variant='outline-info' >
-                                        <Link to={`/record/${id}/edit`} >Edit</Link>
-                                    </Button> */} 
+                                        <Link to={`/update/${id}`} >Edit</Link>
+                                    </Button> */}
                                     {/* <Button variant='danger' onClick={console.log(record.cars.indexOf(car))}>Delete</Button> */}  
                                     <Button variant='danger' onClick={() => handleDelete(record.cars.indexOf(car), id)}>Delete</Button>
                                 </ButtonGroup>
@@ -102,7 +102,9 @@ const ViewRecord = (props) => {
                     </tbody>
                 </Table>
             </div>
-        <Button className="float-end">Add Vehicle</Button>
+        <Button className="float-end" variant='outline-info'>
+            <Link to={`/update/${id}`} >Add Vehicle</Link>
+        </Button>
         </div>
         )}
         </div>
