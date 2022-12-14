@@ -25,11 +25,12 @@ const AddVehicle = (props) => {
 
 
 const handleSubmit = (e) => {
-    console.log("s");
+    console.log("handling Submit below.");
     e.preventDefault();
     //const NewRecord = { name: fullName, cars: [cars] };
     console.log(record);
-    const NewRecord = record.cars.push(cars);
+    const NewRecord = record;
+    NewRecord.cars.push(cars);
     console.log(NewRecord);
     console.log(props.url);
     const methodz = { 
